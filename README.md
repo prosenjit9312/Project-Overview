@@ -1,1 +1,13 @@
 # Microservices-Application
+1️⃣ dotnet
+2️⃣ csharp
+3️⃣ microservices
+4️⃣ monolithic
+5️⃣ mssql
+6️⃣ docker
+7️⃣ kubernetes
+8️⃣ cicd
+9️⃣ cloud-native
+🔟 clean-architecture
+1️⃣1️⃣ distributed-system
+1️⃣2️⃣ design-patterns
