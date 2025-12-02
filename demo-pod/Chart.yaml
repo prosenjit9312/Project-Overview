@@ -1,6 +1,3 @@
 apiVersion: v2
-name: demo-pod
-description: A Helm chart for demo pod deployment
-type: application
-version: 0.1.0
-appVersion: "1.0"
+name: todo-app-chart
+version: "1.0"
