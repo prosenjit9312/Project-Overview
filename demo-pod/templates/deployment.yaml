@@ -1,21 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-deployment
+  name: {{ include "demo-pod.fullname" . }}
   labels:
-    app: {{ .Release.Name }}
+    app: {{ include "demo-pod.name" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app: {{ include "demo-pod.name" . }}
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}
+        app: {{ include "demo-pod.name" . }}
     spec:
+      serviceAccountName: {{ if .Values.serviceAccount.create }}{{ include "demo-pod.serviceAccountName" . }}{{ else }}default{{ end }}
       containers:
-      - name: {{ .Chart.Name }}
-        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+      - name: nginx
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
-        - containerPort: {{ .Values.service.port }}
+        - containerPort: 80
