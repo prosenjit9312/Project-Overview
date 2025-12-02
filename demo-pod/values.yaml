@@ -10,3 +10,6 @@ service:
 serviceAccount:
   create: true
   name: ""
+ingress:
+  enabled: false
+  # You can add other ingress related values here if needed
