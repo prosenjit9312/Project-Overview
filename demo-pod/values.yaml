@@ -5,11 +5,13 @@ image:
   tag: latest
 
 service:
+  type: ClusterIP
   port: 80
+
+ingress:
+  enabled: false
+  # aap yahan ingress ka config bhi de sakte hain agar chahiye
 
 serviceAccount:
   create: true
   name: ""
-ingress:
-  enabled: false
-  # You can add other ingress related values here if needed
