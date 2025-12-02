@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "demo-pod.fullname" . }}
-  labels:
-    app: {{ include "demo-pod.name" . }}
+  name: {{ .Release.Name }}-todo-add-tasks-api
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.addTask.replicas }}
   selector:
     matchLabels:
-      app: {{ include "demo-pod.name" . }}
+      app: {{ .Release.Name }}-todo-add-tasks-api
   template:
     metadata:
       labels:
-        app: {{ include "demo-pod.name" . }}
+        app: {{ .Release.Name }}-todo-add-tasks-api
     spec:
-      serviceAccountName: {{ if .Values.serviceAccount.create }}{{ include "demo-pod.serviceAccountName" . }}{{ else }}default{{ end }}
       containers:
-      - name: nginx
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+      - name: {{ .Release.Name }}-todo-add-tasks-api
+        image: "{{ .Values.common.containerRegistryURL }}/{{ .Values.addTask.image.name }}:{{ .Values.addTask.image.tag }}"
         ports:
-        - containerPort: 80
+        - containerPort: {{ .Values.addTask.port }}
+        env: 
+        - name: CONNECTION_STRING
+          value: "{{ .Values.addTask.connectionString }}"        
